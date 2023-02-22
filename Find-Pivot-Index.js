@@ -54,3 +54,25 @@ Right sum = nums[1] + nums[2] = 1 + -1 = 0  */
       }
   } return -1;
 };
+//Runtime 86 ms
+
+//Another Solution:
+/* Logic: 
+We know leftsum and rightsum will be equal
+so we can use leftSum * 2 (leftSum + rightSum)
+Also we know totalsum so we can use totalSum - num[i] === leftSum * 2
+*/
+var pivotIndex = function(nums) {
+  let leftSum = 0;
+  let totalSum = 0;
+  for(let i = 0; i < nums.length; i++) {
+      totalSum += nums[i];
+  }
+  for(let i = 0; i < nums.length; i++) {
+      if(leftSum * 2 === totalSum - nums[i]) {
+          return i;
+      } else {
+          leftSum += nums[i]
+      }
+  } return -1;
+};
